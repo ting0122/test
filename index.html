@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Meibei</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+
+    <body>
+        <h2>註冊</h2>
+        <form action="" method="post"><!--如果用get，輸入後的資料會顯示在網址列-->
+            <fieldset><!--表單內容集合邊框-->
+                <legend>個人資料</legend><!--集合資料名稱-->
+                    <label for="yourpic">上傳你自己的頭像</label><br>
+                    <input type="file" id="yourpic" name="yourpic"><br>
+
+                    <lable for="fname">First name</lable><br>
+                    <input type="text" id="fname" name="fname"><br><!--input需要name屬性，不然不會送出資料-->
+
+                    <lable for="lname">Last name</lable><br>
+                    <input type="text" id="lname" name="lname"><br>
+
+                    <label for="pwd">Password</label><br>
+                    <input type="password" id="pwd" name="pwd" pattern="[A-Z||a-z||0-9]{8}" title="請按照妹北要的標準"><br>
+
+                    <label for="gender">Yor gender</label><br>
+                    <select id="gender" name="gender"><!--multiple為開啟複選-->
+                        <option value="male">Male</option>
+                        <option value="female">Female</option> 
+                    </select><br><br>
+
+                    <textarea name="message" rows="10" cols="30">talk about yourself</textarea><br><br>
+                    
+                    <input type="submit" value="提交"><input type="reset">
+            </fieldset>
+        </form>
+
+    </body>
+</html>
