@@ -2,6 +2,7 @@
   "dependencies": {
     "formidable": "^2.0.1",
     "pg": "^8.8.0",
-    "postgresql": "^0.0.1"
+    "postgresql": "^0.0.1",
+    "querystring": "^0.2.1"
   }
 }

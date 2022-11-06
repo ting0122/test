@@ -1,7 +1,13 @@
-var http = require("http");
-var fs = require("fs");//because we need read html files
-var formidable = require("formidable");
-var pg = require("pg");
+const http = require("http");
+const fs = require("fs");//because we need read html files
+const formidable = require("formidable");
+const pg = require("pg");
+const qs = require("querystring");
+var FirstName ;
+var LastName ;
+var password ;
+
+
 
 http.createServer(function(req,res){
     fs.readFile('index.html',function(err,data){
@@ -13,35 +19,54 @@ http.createServer(function(req,res){
         res.write(data);//html's content
         res.end();//end of response
     });
+
+    const method = req.method;
+    const url = req.url;//req為從前端傳來的東西，html form裡的method和action的url
+
+    if(method==="GET"){
+
+    }else{
+        if(url==="/built_account"){
+            let body = [];
+
+            req.on("data",(chunk)=>{
+                body.push(chunk);
+            });
+            req.on("end",()=>{
+                body = Buffer.concat(body).toString();
+                body = qs.parse(body);
+                FirstName = body.fname;
+                LastName = body.lname;
+                password = body.pwd;
+                console.log(FirstName);
+                console.log(LastName);
+                console.log(password);
+            });
+        };
+    };
+
 }).listen(8080);
 
 const config = { //configuration
     host: 'localhost',
     user: 'chen',
     password:'123456',
-    database:'postgres',
+    database:'mydb',
     port:5432,
 };
 
 const client = new pg.Client(config);
 
-client.connect(err => {
-    if(err)
-        throw err;
-    else{
-        queryDatabase();
+client.connect();
+//要將postgresql資料庫裡的架構public屬性打開權限，才能動作
+client.query(`insert into users(first_name,last_name,passwords)
+values('${FirstName}','${LastName}','${password}');
+`,(err, res)=>{
+    if(!err){
+        console.log(res.rows);
     }
+    else{
+        console.log(err.message);
+    }
+    client.end;
 });
-
-function queryDatabase(){
-    console.log('running query to postgresql');
-    const query = ``;
-    client.query(query)
-    .then(res=>{
-        console.log('you did it');
-    })
-    .catch(err=>{
-        console.log('err');
-        throw err;
-    })
-};
