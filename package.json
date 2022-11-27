@@ -1,8 +1,32 @@
 {
   "dependencies": {
+    "cross-env": "^7.0.3",
     "formidable": "^2.0.1",
+    "nodemon": "^2.0.20",
     "pg": "^8.8.0",
     "postgresql": "^0.0.1",
     "querystring": "^0.2.1"
-  }
+  },
+  "name": "myweb",
+  "version": "1.0.0",
+  "main": "howDB.js",
+  "bin": {
+    "myweb": "bin/app.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env NODE_ENV=dev nodemon ./bin/www.js",
+    "prd": "cross-env NODE_ENV=production nodemon ./bin/www.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ting0122/test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ting0122/test/issues"
+  },
+  "homepage": "https://github.com/ting0122/test#readme",
+  "description": ""
 }
