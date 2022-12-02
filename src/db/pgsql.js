@@ -1,12 +1,6 @@
 const { Client } = require('pg')
-const { postgre_conf } = require('../conf/db')
-const client = new Client({
-    host: 'localhost',
-    port: 5432,
-    user: 'postgres',
-    password: 'nba51158',
-    database: 'mydb'
-})//db.js的config傳不進來
+const  { postgre_conf }  = require('../conf/db')
+const client = new Client(postgre_conf)
 
 client.connect()
 

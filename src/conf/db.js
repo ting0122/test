@@ -1,8 +1,10 @@
 const env = process.env.NODE_ENV //環境變量
 
+console.log(env)
+
 let postgre_conf
 
-if(env === 'env'){ //本地開發端
+if(env === 'dev'){ //本地開發端
     postgre_conf = {
         host: 'localhost',
         port: 5432,
