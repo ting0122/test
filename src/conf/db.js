@@ -3,6 +3,7 @@ const env = process.env.NODE_ENV //環境變量
 console.log(env)
 
 let postgre_conf
+let redis_conf
 
 if(env === 'dev'){ //本地開發端
     postgre_conf = {
@@ -11,6 +12,10 @@ if(env === 'dev'){ //本地開發端
         user: 'postgres',
         password: 'nba51158',
         database: 'mydb'
+    }
+    redis_conf = {
+        port : 6379,
+        host : '127.0.0.1'
     }
 }
 
@@ -22,8 +27,13 @@ if(env === 'production'){
         password: 'nba51158',
         database: 'mydb'
     }
+    redis_conf = {
+        port : 6379,
+        host : '127.0.0.1'
+    }
 }
 
 module.exports = {
-    postgre_conf
+    postgre_conf,
+    redis_conf
 }
